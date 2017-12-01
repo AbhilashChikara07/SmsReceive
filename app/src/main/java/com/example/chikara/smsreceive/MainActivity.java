@@ -9,5 +9,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SmsBroadcastReceiverClass.smsListiner(new SmsBroadcastReceiverClass.smsInterface() {
+            @Override
+            public void receiveMessage(String sms) {
+
+            }
+        });
     }
 }

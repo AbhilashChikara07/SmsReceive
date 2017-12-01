@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class SmsBroadcastReceiverClass extends BroadcastReceiver {
 
     public static final String SMS_BUNDLE = "pdus";
+    private static smsInterface mAnInterface;
 
     public void onReceive(Context context, Intent intent) {
         Bundle intentExtras = intent.getExtras();
@@ -29,7 +30,17 @@ public class SmsBroadcastReceiverClass extends BroadcastReceiver {
                 smsMessageStr += "SMS From: " + address + "\n";
                 smsMessageStr += smsBody + "\n";
             }
+            mAnInterface.receiveMessage(smsMessageStr);
             Toast.makeText(context, smsMessageStr, Toast.LENGTH_SHORT).show();
         }
     }
+
+    public static void smsListiner(smsInterface anInterface) {
+        mAnInterface = anInterface;
+    }
+
+    interface smsInterface {
+        public void receiveMessage(String sms);
+    }
+
 }
